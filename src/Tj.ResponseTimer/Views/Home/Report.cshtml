@@ -1,0 +1,49 @@
+@model IEnumerable<Tj.ResponseTimer.ModelsViews.WrapResult>
+
+@{
+    ViewData["Title"] = "Report";
+}
+
+<h4 style="float:right; color: rgb(31, 68, 143)">Report</h4>
+
+    <table class="table table-hover">
+        <thead style="background-color: rgb(199, 236, 241);">
+            <tr>
+                <th class="col-md-4">
+                    Page URL
+                </th>
+                <th class="col-md-2">
+                    Measure server time <i>.ms</i>
+                </th>
+                <th class="col-md-2">
+                    Server - Client time <i>.s</i>
+                </th>
+                <th class="col-md-4">
+                    Graphic line Server and server - client mite
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.PagePath
+                </td>
+                <td>
+                    <b>@item.measSerTime</b>
+                </td>
+                <td>
+                    <b>0,@item.measScTime</b>
+                </td>
+                <td>
+                    <i>ServTime:@item.measSerPersTime%  -#- Serv-Client time:@item.measScPersTime%</i>
+                    <div class="baseDiv" style="width:@item.measScPersTime%;">
+                        <div class="innerDiv" style="width:@item.measSerPersTime%;"></div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+
+
